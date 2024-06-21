@@ -39,7 +39,6 @@ export class AuthService {
             })
 
             const checkExistToken = await this.AuthModel.findOne({username: verify.username, refreshToken})
-            console.log(checkExistToken)
             if (checkExistToken) {
                 const generateToken = await this.generateToken({id: verify.id, username: verify.username})
 
