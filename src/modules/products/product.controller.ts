@@ -4,7 +4,7 @@ import { ResponseData } from "src/global/globalClass";
 import { HttpMessage, HttpStatus } from "src/global/globalEnum";
 import { Product } from "src/models/product.model";
 import { ProductDto } from "src/dto/product.dto";
-import { AuthGuard } from "@nestjs/passport";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller('products')
 export class ProductController {
@@ -12,7 +12,7 @@ export class ProductController {
     constructor(private readonly productService: ProductService) {}
 
     @Get()
-    @UseGuards(AuthGuard())
+    @UseGuards(AuthGuard)
     async getAllProducts(): Promise<ResponseData<Product[]>> {
         try {
             const products = await this.productService.findAll();
